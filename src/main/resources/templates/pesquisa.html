@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Veículos</title>
+		
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+		
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+			
+			var options = {
+				translation:{
+					'A': {pattern: /[A-Z]/},
+					'B': {pattern: /[A-Z0-9]/},
+				}
+			}
+				$("#placaInput").mask("AAA-9B99", options)
+				$("#chassiInput").mask("BBB BBBBBB BB BBBBBB", options)
+				$("#renavamInput").mask("0000000000-0")
+				$("#cnpjInput").mask("00.000.000/0000-00")
+			})
+			
+		</script>
+		
+	</head>
+	
+	<body>
+		<header>	
+			<!-- Image and text -->
+			<nav class="navbar navbar-light bg-light">
+			  <div class="container-fluid">
+			    <a class="navbar-brand" href="/veiculos">
+			      <img src="/imagens/logo.png" alt="Veículos" width="42" height="32" class="d-inline-block align-top">
+			      Consulta de Veículos
+			    </a>
+			  </div>
+			</nav>
+		</header>
+	<section>
+	
+		<div class="container" style=" width: 65%; padding-botton: 30px;">
+			
+			<form action="buscarVeiculo" method="POST" th:object="${veiculo}">
+				<a th:href="@{inserir}"><button type="button" class="btn btn-success" style="margin-top: 20px;">Inserir</button></a>
+				<input type="text" class="form-control" id="placaInput" style="margin-top: 20px; float: right; width:20%;" placeholder="Placa do Veículo" th:field="*{placa}" required="required">
+				<button type="submit" class="btn btn-secondary" style="margin-top: 20px; margin-right: 5px; float: right;">Pesquisar</button>
+	      	</form>
+      			
+			<table class="table table-striped table-hover" style="margin-top: 20px; text-align: center;">
+				<thead class="table-light">
+					<tr>
+						<th>Placa</th>
+						<th>Modelo</th>
+						<th>Cor</th>
+						<th>Proprietário</th>
+						<th>Ação</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="veiculo : ${veiculos}">
+						<td th:text="${veiculo.placa}"></td>
+						<td th:text="${veiculo.modelo}"></td>
+						<td th:text="${veiculo.cor}"></td>
+						<td th:text="${veiculo.proprietario}"></td>
+						<td><a th:href="@{/veiculos/{id}(id=${veiculo.id})}"><button type="button" class="btn btn-outline-primary">Detalhes</button></a>
+							<a th:href="@{/veiculos/{id}(id=${veiculo.id})}"><button type="button" class="btn btn-outline-danger">Excluir</button></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<a href="/veiculos"><button type="button" class="btn btn-secondary" style="float: right;">Voltar</button></a>
+	</section>
+
+	<div class="modal fade" id="veiculoDetails" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h5 class="modal-title">Título</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="container">
+						<form action=""></form>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+						Fechar
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</html>

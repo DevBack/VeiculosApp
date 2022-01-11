@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Veículos</title>
+
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<!-- Image and text -->
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/veiculos"> 
+					<img src="/imagens/logo.png" alt="Veículos" width="42" height="32" class="d-inline-block align-top"> 
+					Veículos
+				</a>
+			</div>
+		</nav>
+	</header>
+	<section>
+		<div class="container" style="width: 65%; padding-botton: 30px;  margin-top:30px">
+	
+			<form method="POST" action="/alterarUsuario" th:object="${usuario}">
+				
+				<fieldset >
+				
+					<legend>Alterar Usuário</legend>
+					<hr>
+						<input type="hidden" th:field="*{id}">
+					
+					<div class="row  form-group">	
+						<div class="mb-3 col-md-6">
+							<label for="nomeInput" class="form-label">Nome:</label> 
+							<input type="text" id="nomeInput" class="form-control" value="" th:field="*{nome}" required="required">
+						</div>	
+						<div class="mb-3 col-md-6">
+							<label for="emailInput" class="form-label">E-mail:</label> 
+							<input type="email" id="emailInput" class="form-control" value="" th:field="*{email}" required="required">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="senhaInput" class="form-label">Senha:</label> 
+							<input type="password" id="senhaInput" class="form-control" value="" th:field="*{senha}" required="required">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="cpfInput" class="form-label">CPF:</label> 
+							<input type="text" id="cpfInput" class="form-control" value="" th:field="*{cpf}" required="required">
+						</div>
+					</div>	
+				</fieldset>
+					<button type="submit" class="btn btn-success">Salvar</button>
+					<a href="/usuarios"><button type="button" class="btn btn-danger">Cancelar</button></a>
+			</form>
+		</div>
+	</section>
+</html>

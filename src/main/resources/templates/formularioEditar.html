@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Veículos</title>
+
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+			
+			var options = {
+				translation:{
+					'A': {pattern: /[A-Z]/},
+					'B': {pattern: /[A-Z0-9]/},
+				}
+			}
+				$("#placaInput").mask("AAA-9B99", options)
+				$("#chassiInput").mask("BBB BBBBBB BB BBBBBB", options)
+				$("#renavamInput").mask("0000000000-0")
+				$("#cnpjInput").mask("00.000.000/0000-00")
+			})
+			
+		</script>
+
+</head>
+
+<body>
+	<header>
+		<!-- Image and text -->
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/veiculos"> 
+					<img src="/imagens/logo.png" alt="Veículos" width="42" height="32" class="d-inline-block align-top">
+					Veículos
+				</a>
+			</div>
+		</nav>
+	</header>
+	<section>
+		<div class="container" style="width: 65%; padding-botton: 30px;  margin-top:30px">
+			
+			<form method="POST" action="/alterar" th:object="${veiculo}">
+				
+				<fieldset >
+				
+					<legend>Alterar Veículo</legend>
+					<hr>
+						<input type="hidden" th:field="*{id}">
+					
+					<div class="row  form-group">
+						<div class="mb-3 col-md-2">
+							<label for="placaInput" class="form-label">Placa:</label> 
+							<input type="text" id="placaInput" class="form-control" placeholder="XXX-YYYY" th:field="*{placa}" required="required">
+						</div>	
+						<div class="mb-3 col-md-5">
+							<label for="proprietarioInput" class="form-label">Proprietário:</label> 
+							<input type="text" id="proprietarioInput" class="form-control" placeholder="Empresa Proprietária" th:field="*{proprietario}" required="required">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="modeloInput" class="form-label">Modelo:</label> 
+							<input type="text" id="modeloInput" class="form-control" placeholder="Modelo" th:field="*{modelo}" required="required">
+						</div>
+					</div>
+					<div class="row  form-group">		
+						<div class="mb-3 col-md-3">
+							<label for="chassiInput" class="form-label">Chassi:</label> 
+							<input type="text" id="chassiInput" class="form-control" placeholder="Chassi" th:field="*{chassi}" required="required">
+						</div>	
+						<div class="mb-3 col-md-2">
+							<label for="renavamInput" class="form-label">Renavam:</label> 
+							<input type="text" id="renavamInput" class="form-control" placeholder="Renavam" th:field="*{renavan}" required="required">
+						</div>	
+						<div class="mb-3 col-md-2">
+							<label for="corInput" class="form-label">Cor:</label> 
+							<input type="text" id="corInput" class="form-control" placeholder="Cor" th:field="*{cor}" required="required">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="cnpjInput" class="form-label">CNPJ:</label> 
+							<input type="text" id="cnpjInput" class="form-control" placeholder="CNPJ" th:field="*{cnpj}" required="required">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success">Salvar</button>
+					<a href="/veiculos"><button type="button" class="btn btn-danger">Cancelar</button></a>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+</html>

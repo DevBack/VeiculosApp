@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<title>Veículos</title>
+
+		<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+</head>
+
+<body>
+	<header>
+		<!-- Image and text -->
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/veiculos"> 
+					<img src="/imagens/logo.png" alt="Veículos" width="42" height="32" class="d-inline-block align-top"> 
+					Veículos
+				</a>
+			</div>
+		</nav>
+	</header>
+	<section>
+		<div class="container" style="width: 65%; padding-botton: 30px;  margin-top:30px">
+			
+			<form >
+				
+				<fieldset disabled>
+				
+					<legend>Alterar do Usuário</legend>
+					<hr>
+						<input type="hidden" th:field="*{id}">
+					
+					<div class="row  form-group">	
+						<div class="mb-3 col-md-6">
+							<label for="nomeInput" class="form-label">Nome:</label> 
+							<input type="text" id="nomeInput" class="form-control" value="" th:field="${usuario.nome}">
+						</div>	
+						<div class="mb-3 col-md-6">
+							<label for="emailInput" class="form-label">E-mail:</label> 
+							<input type="email" id="emailInput" class="form-control" value="" th:field="${usuario.email}">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="senhaInput" class="form-label">Senha:</label> 
+							<input type="password" id="senhaInput" class="form-control" value="" th:field="${usuario.senha}">
+						</div>
+						<div class="mb-3 col-md-3">
+							<label for="cpfInput" class="form-label">CPF:</label> 
+							<input type="text" id="cpfInput" class="form-control" value="" th:field="${usuario.cpf}">
+						</div>
+					</div>	
+				</fieldset>
+					<a th:href="@{/editar/{id}(id=${usuario.id})}"><button type="button" class="btn btn-primary">Editar</button></a>
+					<a th:href="@{/excluir/{id}(id=${usuario.id})}"><button type="button" class="btn btn-danger">Excluir</button></a>
+					<a href="/usuarios"><button type="button" class="btn btn-secondary">Voltar</button></a>
+			</form>
+		</div>
+	</section>
+</html>
